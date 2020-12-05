@@ -1,0 +1,101 @@
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Intugine</a>
+      <div class="nav-collapse">   
+        <ul class="nav pull-right">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">brand</a></li>
+            <li><a href="#">transpoters</a></li>
+        </ul>
+      </div><!-- /.nav-collapse -->
+    </div>
+  </div><!-- /navbar-inner -->
+</div>
+
+<div class="border border-light p-3 mb-4">
+    <div class="text-center">
+        <center>
+        <table style="width: 20% ; float: center " >
+            <tr>
+                <th>
+                    <form action="/ty_ch/del"><button type="submit" class="btn btn-primary">DEL <br> <%= DEL %> </button></form>
+                </th>
+                <th>
+                    <form action="/ty_ch/int"><button type="submit" class="btn btn-primary">INT <br> <%= INT %></button></form>
+                </th>
+                <th>
+                    <form action="/ty_ch/ood"><button type="submit" class="btn btn-primary">OOD <br> <%= OOD %></button></form>
+                </th>
+                <th>
+                    <form action="/ty_ch/dex"><button type="submit" class="btn btn-primary">DEX <br> <%= DEX %></button></form>
+                </th>
+                <th>
+                    <form action="/ty_ch/nfi"><button type="submit" class="btn btn-primary">NFI <br> <%= NFI %></button></form>
+                </th>
+            </tr>
+        </table></center>
+    </div>
+  </div>
+
+
+<div>
+    <table style="width: 20% ; float: left ; text-align: center;" >
+        <tr>
+            <th>location</th>
+            <th>time</th>
+            <th>status</th>
+        </tr>
+        <% del_data.forEach(function(detail) { %>
+            <tr>
+            <td><%= detail.location %></td>
+            <td><%= detail.time %></td>
+            <td><%= detail.status_detail %></td>
+            </tr>
+        <% }) %> 
+        
+      </table>
+    <table style="width: 80% ; float: right ;text-align: center;">
+        <tr>
+            <th>AWB number</th>
+            <th>Transpoter</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>brand</th>
+            <th>start date</th>
+            <th>ETD</th>
+            <th>status</th>
+        </tr>
+        <% data.forEach(function(detail){
+            if (detail.current_status == status) { %>
+            <form action="/disp_con" method="GET">
+            <tr>
+            <% if (detail.current_status != 'No Information Yet') { %>
+            <td><button name ="_id" type="submit"value="<%= detail._id %>"><%= detail.awbno %></button></td>
+            <% }else{ %>
+            <td><%= detail.awbno %></td> 
+            <% } %>
+            <td><%= detail.carrier %></td>
+            <td><%= detail.from %></td>
+            <td><%= detail.to %></td>
+            <td><%= detail.carrier %></td>
+            <td><%= detail.time %></td>
+            <% if (detail.current_status != 'No Information Yet') { %>
+            <td><%= detail.extra_fields.expected_delivery_date %></td>
+            <% } %>
+            <td><%= detail.current_status %></td>
+            </tr></form>
+        <% }}) %> 
+
+    </table>
+  </div>
