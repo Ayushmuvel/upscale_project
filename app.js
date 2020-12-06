@@ -36,6 +36,6 @@ app.get('/',(req,res)=>{
 })
 
 // defining port to listen
-app.listen(conn_port,()=>{
-  console.log("server started at port "+ conn_port);
+app.listen(conn_port||3000,()=>{
+  console.log("server started at port "+ conn_port||3000);
 })
