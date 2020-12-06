@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
-const path = require("path");
 
 const {conn_port} = require('./config/sys_vari');
 
@@ -37,6 +36,6 @@ app.get('/',(req,res)=>{
 })
 
 // defining port to listen
-app.listen(conn_port||3000,()=>{
-  console.log("server started at port "+ conn_port||3000);
+app.listen(conn_port,()=>{
+  console.log("server started at port "+ conn_port);
 })
