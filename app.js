@@ -34,8 +34,8 @@ app.use('/ty_ch',ty_ch)
 app.get('/',(req,res)=>{
   res.send('it work')
 })
-
+port = process.env.PORT||3000||conn_port
 // defining port to listen
-app.listen(conn_port||3000,()=>{
-  console.log("server started at port "+ conn_port||3000);
+app.listen(port,()=>{
+  console.log("server started at port "+ port);
 })
